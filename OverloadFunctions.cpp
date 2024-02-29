@@ -1,5 +1,8 @@
-﻿// OverloadFunctions.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿// Написать перегруженные функции и протестировать их в основной программе:
+// Нахождения максимального значения в одномерном массиве;
+// Нахождения максимального значения в двумерном массиве;
+// Нахождения максимального значения двух целых;
+// Нахождения максимального значения трёх целых;
 
 #include <iostream>
 #include <windows.h>
@@ -54,6 +57,22 @@ int FindMax(int arr[], int size);
 /// <returns></returns>
 int FindMax(int arr[][20], int rows, int cols);
 
+/// <summary>
+/// Нахождение максимального значения из двух целых
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
+int FindMaxDigit(int, int);
+
+/// <summary>
+/// Нахождение максимального значения из трёх целых
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
+int FindMaxDigit(int, int, int);
+
 int main()
 {
     SetConsoleCP(1251);
@@ -62,6 +81,7 @@ int main()
     const int size = 20;
     const int rows = 20;
     const int cols = 20;
+    int A=0, B=0, C= 0;
     int Array[size];
     int TwoDimensionalArray[rows][cols];
     
@@ -73,6 +93,19 @@ int main()
     FillArray(TwoDimensionalArray, rows, cols);
     PrintArray(TwoDimensionalArray, rows, cols);    
     cout << "Максимальное значение в двумерном в массиве : " << FindMax(TwoDimensionalArray, rows, cols) << endl;
+    cout << endl;
+    cout << endl;
+    cout << "-------------------------------------------------------------------------------------------" << endl;
+    cout << "Для нахождения максимального из двух целых введите A и B :";
+    cin >> A >> B;
+    cout << endl;
+    cout << "Максимально значение : " << FindMaxDigit(A, B) << endl;
+    cout << endl;
+    cout << endl;
+    cout << "-------------------------------------------------------------------------------------------" << endl;
+    cout << "Для нахождения максимального из трёх целых введите A и B и С:";
+    cin >> A >> B >> C;
+    cout << "Максимально значение : " << FindMaxDigit(A, B, C) << endl;
 }
 
 
@@ -133,4 +166,12 @@ int FindMax(int arr[][20], int rows, int cols) {
         }
     }
     return maxVal;
+}
+
+int FindMaxDigit(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int FindMaxDigit(int a, int b, int c) {
+    return FindMaxDigit(FindMaxDigit(a, b), c);
 }
